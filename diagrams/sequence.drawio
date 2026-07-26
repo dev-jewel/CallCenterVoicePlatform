@@ -1,0 +1,1 @@
+<mxfile host="app.diagrams.net"><diagram id="sequence" name="Sequence">&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id="0"/&gt;&lt;mxCell id="1" parent="0"/&gt;&lt;mxCell id="2" value="Caller → PBX → API → CRM → Agent" vertex="1" parent="1"&gt;&lt;mxGeometry x="80" y="100" width="500" height="60" as="geometry"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;</diagram></mxfile>

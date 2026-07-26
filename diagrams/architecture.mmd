@@ -1,0 +1,10 @@
+flowchart LR
+  Agent["Angular Agent Portal"] --> Api["ASP.NET Core API"]
+  Admin["Angular Admin Portal"] --> Api
+  Api --> App["Application Modules"]
+  App --> Sql[("SQL Server")]
+  App --> Telephony["SIP/PBX Adapter"] --> BTCL["BTCL Numbers"]
+  App --> Crm["CRM API"]
+  App --> Store["Recording Object Storage"]
+  App --> Bus["RabbitMQ"] --> Workers["Integration and AI Workers"]
+  App -. optional .-> Redis["Redis"]

@@ -1,0 +1,10 @@
+erDiagram
+  TEAM ||--o{ AGENT : contains
+  TEAM ||--o{ QUEUE : owns
+  AGENT ||--o{ CALL : handles
+  QUEUE ||--o{ CALL : routes
+  CUSTOMER_REFERENCE ||--o{ CALL : identifies
+  CAMPAIGN ||--o{ CALL : governs
+  CALL ||--o{ CALL_EVENT : records
+  CALL ||--o| RECORDING : has
+  CALL ||--o{ AUDIT_EVENT : audits

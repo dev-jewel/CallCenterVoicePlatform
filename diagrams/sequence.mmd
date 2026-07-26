@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant Caller
+  participant PBX as SBC/PBX
+  participant API as Telephony Adapter
+  participant CRM
+  participant Agent
+  Caller->>PBX: Inbound call
+  PBX->>API: Authenticated call event
+  API->>CRM: Lookup caller
+  CRM-->>API: Customer context
+  API->>Agent: Route call and screen-pop
+  Agent-->>API: Disposition
+  API->>API: Persist call and outbox event

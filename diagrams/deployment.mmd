@@ -1,0 +1,9 @@
+flowchart TB
+  Internet --> Waf["Reverse Proxy / WAF"] --> Api1["API Instance A"]
+  Waf --> Api2["API Instance B"]
+  Api1 & Api2 --> Sql[("SQL Server HA")]
+  Api1 & Api2 --> Bus["RabbitMQ"]
+  Api1 & Api2 --> Cache["Redis"]
+  Pbx["SBC / PBX Pair"] --> Api1 & Api2
+  Api1 & Api2 --> Storage["Object Storage"]
+  Obs["Logs / Metrics / Traces"] --- Api1 & Api2
