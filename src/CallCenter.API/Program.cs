@@ -11,22 +11,71 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseSerilog((context, services, configuration) => configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services));
+
+builder.Host.UseSerilog((context, services, configuration) =>
+{
+    configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(services);
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHealthChecks().AddDbContextCheck<CallCenterDbContext>();
-builder.Services.AddAutoMapper(_ => { }, typeof(MappingProfile).Assembly);
+
+builder.Services
+    .AddHealthChecks()
+    .AddDbContextCheck<CallCenterDbContext>();
+
+builder.Services.AddAutoMapper(
+    _ => { },
+    typeof(MappingProfile).Assembly);
+
 builder.Services.AddValidatorsFromAssemblyContaining<CreateAgentRequestValidator>();
+
 builder.Services.AddInfrastructure(builder.Configuration);
-var jwt = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>() ?? throw new InvalidOperationException("JWT configuration is required.");
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters { ValidateIssuer = true, ValidIssuer = jwt.Issuer, ValidateAudience = true, ValidAudience = jwt.Audience, ValidateIssuerSigningKey = true, IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.SigningKey)), ValidateLifetime = true });
+
+var jwt = builder.Configuration
+    .GetSection(JwtOptions.SectionName)
+    .Get<JwtOptions>()
+    ?? throw new InvalidOperationException("JWT configuration is required.");
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwt.Issuer,
+
+            ValidateAudience = true,
+            ValidAudience = jwt.Audience,
+
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwt.SigningKey)),
+
+            ValidateLifetime = true
+        };
+    });
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
 app.UseSerilogRequestLogging();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseSwagger(); app.UseSwaggerUI();
-app.UseAuthentication(); app.UseAuthorization();
-app.MapControllers(); app.MapHealthChecks("/health");
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapHealthChecks("/health");
+
 app.Run();
