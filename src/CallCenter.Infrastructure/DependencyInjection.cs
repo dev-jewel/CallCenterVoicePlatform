@@ -27,23 +27,20 @@ public static class DependencyInjection
         services.AddDbContext<CallCenterDbContext>(options =>
             options.UseSqlServer(connectionString));
 
-        services.AddScoped<IAgentRepository, AgentRepository>();
-        services.AddScoped<IAgentService, AgentService>();
-
-        services.AddSingleton<IDapperConnectionFactory>(_ =>
-            new DapperConnectionFactory(connectionString));
-
-        services.AddSingleton<ITelephonyGateway, TelephonyGateway>();
-
-        services.Configure<JwtOptions>(
-            configuration.GetSection(JwtOptions.SectionName));
-
-        services.AddSingleton<ITokenService, JwtTokenService>();
-
         services.AddHttpClient<ICrmClient, CrmClient>(client =>
         {
             client.BaseAddress = new Uri(baseAddress);
         });
+        services.AddSingleton<IDapperConnectionFactory>(_ =>
+          new DapperConnectionFactory(connectionString));
+
+        services.Configure<JwtOptions>(
+          configuration.GetSection(JwtOptions.SectionName));
+
+        services.AddScoped<IAgentRepository, AgentRepository>();
+        services.AddScoped<IAgentService, AgentService>();
+        services.AddSingleton<ITelephonyGateway, TelephonyGateway>();
+        services.AddSingleton<ITokenService, JwtTokenService>();
 
         return services;
     }

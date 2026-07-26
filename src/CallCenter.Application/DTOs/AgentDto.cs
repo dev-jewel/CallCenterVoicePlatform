@@ -1,6 +1,10 @@
-using CallCenter.Domain.Entities;
+using CallCenter.Domain.Enums;
 
 namespace CallCenter.Application.DTOs;
 
-public sealed record AgentDto(Guid Id, string EmployeeNumber, string DisplayName, string Email, AgentStatus Status);
-public sealed record CreateAgentRequest(string EmployeeNumber, string DisplayName, string Email);
+public sealed record AgentDto(
+    Guid Id,
+    string EmployeeNumber,
+    string DisplayName,
+    string Email,
+    AgentStatus Status);

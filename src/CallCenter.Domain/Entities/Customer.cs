@@ -6,5 +6,5 @@ public sealed class Customer
     public required string ExternalCrmId { get; set; }
     public required string DisplayName { get; set; }
     public string? PrimaryPhoneNumber { get; set; }
-    public DateTimeOffset CreatedAtUtc { get; init; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedAtUtc { get; init; } = DateTimeOffset.UtcNow.AddHours(6);
 }

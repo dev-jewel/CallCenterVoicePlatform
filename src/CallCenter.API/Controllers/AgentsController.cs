@@ -8,7 +8,7 @@ namespace CallCenter.API.Controllers;
 [ApiController]
 [Route("api/agents")]
 [Authorize(Roles = "Administrator,Supervisor")]
-public sealed class AgentsController(IAgentService agentService) : ControllerBase
+public class AgentsController(IAgentService agentService) : ControllerBase
 {
     [HttpGet]
     public Task<IReadOnlyList<AgentDto>> List(CancellationToken cancellationToken)
