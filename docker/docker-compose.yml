@@ -5,4 +5,15 @@ services:
       dockerfile: src/CallCenter.API/Dockerfile
     environment:
       ASPNETCORE_URLS: http://+:8080
-    ports: ["8080:8080"]
+    ports: ["8081:8080"]
+
+  frontend:
+    build:
+      context: ../frontend/callcenter-angular
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../frontend/callcenter-angular/src:/app/src
+    depends_on:
+      - api
