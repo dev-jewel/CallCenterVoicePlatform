@@ -1,1 +1,14 @@
-import { Component } from '@angular/core'; @Component({ standalone: true, template: `<h1>Operations dashboard</h1><p>Agent availability and queue indicators are introduced here as modules become operational.</p>` }) export class DashboardComponent {}
+import { Component } from '@angular/core';
+
+@Component({
+  standalone: true,
+  template: `
+    <h1>Operations Dashboard</h1>
+
+    <p>
+      Agent availability and queue indicators are introduced here
+      as modules become operational.
+    </p>
+  `
+})
+export class DashboardComponent {}
