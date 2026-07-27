@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 import { Agent } from '../models/agent';
 
@@ -10,6 +11,6 @@ export class AgentService {
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<Agent[]>('/api/agents');
+    return this.http.get<Agent[]>(`${environment.apiUrl}/agents`);
   }
 }

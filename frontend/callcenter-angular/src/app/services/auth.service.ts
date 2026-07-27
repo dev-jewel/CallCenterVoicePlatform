@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http
-      .post<{ accessToken: string }>('/api/auth/login', {
+      .post<{ accessToken: string }>(`${environment.apiUrl}/auth/login`, {
         username,
         password
       })

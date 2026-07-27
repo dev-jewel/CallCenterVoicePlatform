@@ -26,7 +26,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularFrontend",
-        policy => policy.WithOrigins("http://localhost:4200")
+        policy => policy.WithOrigins("http://localhost:4200", "http://localhost:63009")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
