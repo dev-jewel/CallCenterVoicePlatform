@@ -12,7 +12,7 @@ Angular portals call an ASP.NET Core modular monolith. Clean Architecture keeps 
 
 * `src/`: exactly four .NET 8 projects: `CallCenter.API`, `CallCenter.Application`, `CallCenter.Domain`, and `CallCenter.Infrastructure`.
 * `frontend/`: Angular portal skeleton.
-* `docs/`: requirement analysis and architecture decisions.
+* `Architecture_Design_Document.md`: complete requirement analysis and architecture decisions.
 * `diagrams/`: Mermaid, editable Draw.io XML, and PNG views.
 * `docker/`: local orchestration.
 
@@ -29,7 +29,7 @@ Docker is not required for normal local development. The [API Dockerfile](src/Ca
 
 ## Documentation and roadmap
 
-The complete architecture set is under `docs/`. Next phases validate BTCL/PBX connectivity, implement prioritized MVP modules, add durable events/load testing, then introduce AI only after consent, privacy and evaluation controls are accepted.
+The complete architecture set is in `Architecture_Design_Document.md`. Next phases validate BTCL/PBX connectivity, implement prioritized MVP modules, add durable events/load testing, then introduce AI only after consent, privacy and evaluation controls are accepted.
 
 ## Assignment note
 
