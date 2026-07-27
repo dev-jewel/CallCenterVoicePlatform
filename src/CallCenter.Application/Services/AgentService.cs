@@ -7,8 +7,10 @@ namespace CallCenter.Application.Services;
 
 public sealed class AgentService(IAgentRepository repository, IMapper mapper) : IAgentService
 {
-    public async Task<IReadOnlyList<AgentDto>> ListAsync(CancellationToken cancellationToken) =>
-        mapper.Map<IReadOnlyList<AgentDto>>(await repository.ListAsync(cancellationToken));
+    public async Task<IReadOnlyList<AgentDto>> ListAsync(CancellationToken cancellationToken)
+    {
+        return mapper.Map<IReadOnlyList<AgentDto>>(await repository.ListAsync(cancellationToken));
+    }
 
     public async Task<AgentDto> CreateAsync(CreateAgentRequest request, CancellationToken cancellationToken)
     {
