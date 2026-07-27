@@ -7,9 +7,15 @@ public sealed class CallCenterDbContext(
     DbContextOptions<CallCenterDbContext> options)
     : DbContext(options)
 {
-    public DbSet<Agent> Agents => Set<Agent>();
+    public DbSet<Agent> Agents
+    {
+        get { return Set<Agent>(); }
+    }
 
-    public DbSet<Customer> Customers => Set<Customer>();
+    public DbSet<Customer> Customers
+    {
+        get { return Set<Customer>(); }
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
