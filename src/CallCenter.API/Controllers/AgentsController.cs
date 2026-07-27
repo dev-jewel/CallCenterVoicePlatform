@@ -27,4 +27,33 @@ public class AgentsController(IAgentService agentService) : ControllerBase
             nameof(List),
             agent);
     }
+
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult<AgentDto>> Update(
+        Guid id,
+        UpdateAgentRequest request,
+        CancellationToken cancellationToken)
+    {
+        var agent = await agentService.UpdateAsync(id, request, cancellationToken);
+        if (agent is null)
+        {
+            return NotFound();
+        }
+        
+        return Ok(agent);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(
+        Guid id,
+        CancellationToken cancellationToken)
+    {
+        var deleted = await agentService.DeleteAsync(id, cancellationToken);
+        if (!deleted)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
 }

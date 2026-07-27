@@ -13,4 +13,16 @@ export class AgentService {
   list() {
     return this.http.get<Agent[]>(`${environment.apiUrl}/agents`);
   }
+
+  create(agent: Partial<Agent>) {
+    return this.http.post<Agent>(`${environment.apiUrl}/agents`, agent);
+  }
+
+  update(id: string, agent: Partial<Agent>) {
+    return this.http.put<Agent>(`${environment.apiUrl}/agents/${id}`, agent);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.apiUrl}/agents/${id}`);
+  }
 }

@@ -18,4 +18,33 @@ public sealed class AgentService(IAgentRepository repository, IMapper mapper) : 
         await repository.AddAsync(agent, cancellationToken);
         return mapper.Map<AgentDto>(agent);
     }
+
+    public async Task<AgentDto?> UpdateAsync(Guid id, UpdateAgentRequest request, CancellationToken cancellationToken)
+    {
+        var agent = await repository.GetByIdAsync(id, cancellationToken);
+        if (agent is null)
+        {
+            return null;
+        }
+
+        agent.EmployeeNumber = request.EmployeeNumber;
+        agent.DisplayName = request.DisplayName;
+        agent.Email = request.Email;
+        agent.Status = request.Status;
+
+        await repository.UpdateAsync(agent, cancellationToken);
+        return mapper.Map<AgentDto>(agent);
+    }
+
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var agent = await repository.GetByIdAsync(id, cancellationToken);
+        if (agent is null)
+        {
+            return false;
+        }
+
+        await repository.DeleteAsync(agent, cancellationToken);
+        return true;
+    }
 }
