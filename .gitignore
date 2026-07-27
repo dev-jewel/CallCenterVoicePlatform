@@ -7,4 +7,4 @@ dist/
 *.user
 appsettings.Local.json
 tmp/
-scripts/
+
