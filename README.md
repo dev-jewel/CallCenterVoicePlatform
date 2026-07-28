@@ -21,7 +21,7 @@ Angular portals call an ASP.NET Core modular monolith. Clean Architecture keeps 
 1. Start SQL Server locally (SQL Server Express/Developer, LocalDB, or your own instance) and set `ConnectionStrings__CallCenter` as an environment variable.
 2. Run `dotnet run --project src/CallCenter.API`.
 3. In `frontend/callcenter-angular`, run `npm install` then `npm run start`.
-4. Browse API documentation at the URL printed by ASP.NET Core (normally `http://localhost:5000/swagger`).
+4. Browse API documentation at the URL printed by ASP.NET Core (normally `http://localhost:5294/swagger`).
 
 ## Docker for publishing
 
