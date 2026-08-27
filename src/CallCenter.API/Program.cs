@@ -88,14 +88,11 @@ builder.Services
         {
             ValidateIssuer = true,
             ValidIssuer = jwt.Issuer,
-
             ValidateAudience = true,
             ValidAudience = jwt.Audience,
-
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(jwt.SigningKey)),
-
             ValidateLifetime = true
         };
     });
